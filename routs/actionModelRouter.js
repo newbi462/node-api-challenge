@@ -132,8 +132,4 @@ router.delete('/:id', (request, responce) => {
 
 
 
-
-
-
-
 module.exports = router;

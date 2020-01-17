@@ -103,6 +103,25 @@ router.delete('/:id', (request, responce) => {
 SEE THE PUT AND DEL BOTH TEST FOR VALID AND MAKES USE OF ID
 */
 
+//Retrieve the list of actions for a project.
+//The get in ACTIONS should cover this but just in case:
+router.get('/:id/actions', (request, responce) => {
+  const id = request.params.id;
+  ProjectModel.getProjectActions(id)
+    .then(actions => {
+      responce.status(200).json(actions);
+      //console.log(actions);
+    })
+    .catch( error => {
+      console.log(error);
+      responce.status(500).json(
+        {
+          error: "Please check your Project ID."
+        }
+      )
+    })
+});
+
 
 
 
