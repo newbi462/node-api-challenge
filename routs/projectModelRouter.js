@@ -98,10 +98,12 @@ router.delete('/:id', (request, responce) => {
 
 
 //SOME BY ID
-// SEE THE PUT BOTH TEST FOR VALID AND MAKES USE OF ID
-
-
-
 //When adding an action, make sure the project_id provided belongs to an existing project. If you try to add an action with an id of 3 and there is no project with that id the database will return an error.
+/*
+SEE THE PUT AND DEL BOTH TEST FOR VALID AND MAKES USE OF ID
+*/
+
+
+
 
 module.exports = router;
