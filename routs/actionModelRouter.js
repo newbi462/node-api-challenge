@@ -71,46 +71,33 @@ router.post('/', validateProjectId, (request, responce) => {
     })
 });
 
-/*
-router.post('/', (request, responce) => {
+//PUT
+router.put('/:id', validateProjectId, (request, responce) => {
+  const id = request.params.id;
   const resourceObject = request.body;
-  ProjectModel.get(request.body.project_id)
-    .then(projectID => {
-      if (projectID != null) {
-        ActionModel.insert(resourceObject)
-          .then(newlyCreatedResource => {
-            responce.status(200).json(newlyCreatedResource);
-            //console.log(newlyCreatedResource);
-          })
-          .catch( error => {
-            console.log(error);
-            responce.status(500).json(
-              {
-                error: "insert() could create this in the DB. A valid project ID, notes string, and description string are all requiered."
-              }
-            )
-          })
-      } else {
-        console.log(error);
+  ActionModel.update(id, resourceObject)
+    .then(updatedResource => {
+      if (updatedResource == null) {
         responce.status(500).json(
           {
-            error: "This is not a valid Project ID."
+            error: "update() can not find that action ID"
           }
         )
+      }
+      else {
+        responce.status(200).json(updatedResource);
+        //console.log(updatedResource);
       }
     })
     .catch( error => {
       console.log(error);
       responce.status(500).json(
         {
-          error: "This is not a valid Project ID."
+          error: "update() could edit this in the DB. Please check that your Object has all requiered info"
         }
       )
     })
 });
-*/
-
-//PUT
 
 
 //DEL
