@@ -53,5 +53,5 @@ server.use('/api/projectModel', projectModelRouter);
 server.use('/api/actionModel', actionModelRouter);
 
 //LISTEN SERVER
-const port = 8000;
+const port = 8002;
 server.listen(port, () => console.log((`\n ** api on: ${port} ** \n`)));
