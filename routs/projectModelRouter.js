@@ -14,7 +14,7 @@ router.get('/', (request, responce) => {
     })
     .catch( error => {
       console.log(error);
-      res.status(500).json(
+      responce.status(500).json(
         {
           error: "get() Could not GET and array from the DB."
         }
@@ -32,20 +32,47 @@ router.post('/', (request, responce) => {
     })
     .catch( error => {
       console.log(error);
-      res.status(500).json(
+      responce.status(500).json(
         {
-          error: "get() Could not GET and array from the DB."
+          error: "insert() could create this in the DB. A name string and description string are both requiered."
         }
       )
     })
 });
 
 //PUT
+router.put('/:id', (request, responce) => {
+  const id = request.params.id;
+  const resourceObject = request.body;
+  ProjectModel.update(id, resourceObject)
+    .then(updatedResource => {
+      if (updatedResource == null) {
+        responce.status(500).json(
+          {
+            error: "update() can not find that ID"
+          }
+        )
+      }
+      else {
+        responce.status(200).json(updatedResource);
+        console.log(updatedResource);
+      }
+    })
+    .catch( error => {
+      console.log(error);
+      responce.status(500).json(
+        {
+          error: "update() could edit this in the DB. Both an Object to submit and a valid ID are needed."
+        }
+      )
+    })
+});
 
 //DEL
 
-//SOME BY ID
 
+//SOME BY ID
+// SEE THE PUT BOTH TEST FOR VALID AND MAKES USE OF ID
 
 
 
