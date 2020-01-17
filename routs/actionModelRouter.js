@@ -99,10 +99,36 @@ router.put('/:id', validateProjectId, (request, responce) => {
     })
 });
 
-
 //DEL
+router.delete('/:id', (request, responce) => {
+  const id = request.params.id;
+  ActionModel.remove(id)
+    .then(numberOfRecordsDeleted => {
+      if (numberOfRecordsDeleted == 0) {
+        responce.status(500).json(
+          {
+            error: "This is not a valid action ID to delete."
+          }
+        )
+      }
+      else {
+        responce.status(200).json(numberOfRecordsDeleted);
+        //console.log(numberOfRecordsDeleted);
+      }
+
+    })
+    .catch( error => {
+      console.log(error);
+      responce.status(500).json(
+        {
+          error: "remove() could not remove this action from the DB."
+        }
+      )
+    })
+});
 
 //SOME BY ID
+/*SEE PUT AND DEL*/
 
 
 
