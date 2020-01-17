@@ -28,7 +28,7 @@ router.post('/', (request, responce) => {
   ProjectModel.insert(resourceObject)
     .then(newlyCreatedResource => {
       responce.status(200).json(newlyCreatedResource);
-      console.log(newlyCreatedResource);
+      //console.log(newlyCreatedResource);
     })
     .catch( error => {
       console.log(error);
@@ -55,7 +55,7 @@ router.put('/:id', (request, responce) => {
       }
       else {
         responce.status(200).json(updatedResource);
-        console.log(updatedResource);
+        //console.log(updatedResource);
       }
     })
     .catch( error => {
@@ -69,6 +69,32 @@ router.put('/:id', (request, responce) => {
 });
 
 //DEL
+router.delete('/:id', (request, responce) => {
+  const id = request.params.id;
+  ProjectModel.remove(id)
+    .then(numberOfRecordsDeleted => {
+      if (numberOfRecordsDeleted == 0) {
+        responce.status(500).json(
+          {
+            error: "This is not a valid ID to delete."
+          }
+        )
+      }
+      else {
+        responce.status(200).json(numberOfRecordsDeleted);
+        //console.log(numberOfRecordsDeleted);
+      }
+
+    })
+    .catch( error => {
+      console.log(error);
+      responce.status(500).json(
+        {
+          error: "remove() could not remove this from the DB."
+        }
+      )
+    })
+});
 
 
 //SOME BY ID
