@@ -10,7 +10,7 @@ router.get('/', (request, responce) => {
   ProjectModel.get()
     .then(arrayOf => {
       responce.status(200).json(arrayOf);
-      console.log(arrayOf);
+      //console.log(arrayOf);
     })
     .catch( error => {
       console.log(error);
@@ -23,6 +23,22 @@ router.get('/', (request, responce) => {
 });
 
 //POST
+router.post('/', (request, responce) => {
+  const resourceObject = request.body;
+  ProjectModel.insert(resourceObject)
+    .then(newlyCreatedResource => {
+      responce.status(200).json(newlyCreatedResource);
+      console.log(newlyCreatedResource);
+    })
+    .catch( error => {
+      console.log(error);
+      res.status(500).json(
+        {
+          error: "get() Could not GET and array from the DB."
+        }
+      )
+    })
+});
 
 //PUT
 

@@ -46,7 +46,7 @@ const actionModelRouter = require('./routs/actionModelRouter.js');
 
 //ENDPOINTS
 server.get('/', logger, (req, res) => {
-  res.send(`<h2>FUCK BE HAPPY THAT WAS BEYOND INAPRORIATE!!!</h2>`);
+  res.send(`<h2>NO BE HAPPY THAT WAS BEYOND INAPRORIATE!!!</h2>`);
 });
 
 server.use('/api/projectModel', projectModelRouter);
