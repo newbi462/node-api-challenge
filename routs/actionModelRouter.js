@@ -5,6 +5,32 @@ const ProjectModel = require("./../data/helpers/projectModel.js");
 
 const router = express.Router();
 
+function validateProjectId(request, responce, next) {
+  //
+  ProjectModel.get(request.body.project_id)
+    .then(projectID => {
+      if (projectID != null) {
+        next();
+      } else {
+        console.log(error);
+        responce.status(500).json(
+          {
+            error: "This is not a valid Project ID."
+          }
+        )
+      }
+    })
+    .catch( error => {
+      console.log(error);
+      responce.status(500).json(
+        {
+          error: "This is not a valid Project ID."
+        }
+      )
+    })
+};
+
+
 //CRUD
 //GET
 router.get('/', (request, responce) => {
@@ -28,6 +54,24 @@ router.get('/', (request, responce) => {
 belongs to an existing project.
 If you try to add an action with an id of 3
 and there is no project with that id the database will return an error.*/
+router.post('/', validateProjectId, (request, responce) => {
+  const resourceObject = request.body;
+  ActionModel.insert(resourceObject)
+    .then(newlyCreatedResource => {
+      responce.status(200).json(newlyCreatedResource);
+      //console.log(newlyCreatedResource);
+    })
+    .catch( error => {
+      console.log(error);
+      responce.status(500).json(
+        {
+          error: "insert() could create this in the DB. A valid project ID, notes string, and description string are all requiered."
+        }
+      )
+    })
+});
+
+/*
 router.post('/', (request, responce) => {
   const resourceObject = request.body;
   ProjectModel.get(request.body.project_id)
@@ -54,21 +98,6 @@ router.post('/', (request, responce) => {
           }
         )
       }
-      /*
-      ActionModel.insert(resourceObject)
-        .then(newlyCreatedResource => {
-          responce.status(200).json(newlyCreatedResource);
-          //console.log(newlyCreatedResource);
-        })
-        .catch( error => {
-          console.log(error);
-          responce.status(500).json(
-            {
-              error: "insert() could create this in the DB. A valid project ID, notes string, and description string are all requiered."
-            }
-          )
-        })
-      */
     })
     .catch( error => {
       console.log(error);
@@ -78,14 +107,16 @@ router.post('/', (request, responce) => {
         }
       )
     })
-
 });
+*/
 
 //PUT
+
 
 //DEL
 
 //SOME BY ID
+
 
 
 
