@@ -5,8 +5,22 @@ const ProjectModel = require("./../data/helpers/projectModel.js");
 const router = express.Router();
 
 //CRUD
-
 //GET
+router.get('/', (request, responce) => {
+  ProjectModel.get()
+    .then(arrayOf => {
+      responce.status(200).json(arrayOf);
+      console.log(arrayOf);
+    })
+    .catch( error => {
+      console.log(error);
+      res.status(500).json(
+        {
+          error: "get() Could not GET and array from the DB."
+        }
+      )
+    })
+});
 
 //POST
 

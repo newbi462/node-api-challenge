@@ -5,7 +5,6 @@ const ActionModel = require("./../data/helpers/actionModel.js");
 const router = express.Router();
 
 //CRUD
-
 //GET
 
 //POST
