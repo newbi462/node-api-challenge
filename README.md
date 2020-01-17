@@ -39,14 +39,19 @@ Commit your code regularly and use descriptive messages. This helps both you (in
 Demonstrate your understanding of this Sprint's concepts by answering the following free-form questions. Edit this document to include your answers after each question. Make sure to leave a blank line above and below your answer so it is clear and easy to read by your Team Lead.
 
 - [ ] Mention two parts of Express that you learned about this week.
+##### Answer: Built in/included middle-ware like ```express.json()``` that translates JSON to be usable, and ```express.Router()``` that lets a OOP like route be added easy enough, as well at the general implication it offers to server set ups
 
 - [ ] Describe Middleware?
+##### Answer: In many ways a fancy term for a helper function to handle changes the server could not by default between request and response...
 
 - [ ] Describe a Resource?
+##### Answer: Short answer EVERYTHING when it comes to BE; more specific: things like endpoints or other specific URI and so on...
 
 - [ ] What can the API return to help clients know if a request was successful?
+##### Answer: A useful status message that confirms the success...
 
 - [ ] How can we partition our application into sub-applications?
+##### Answer: By using Routes, and appropriate custom middle ware...
 
 ## Minimum Viable Product
 
